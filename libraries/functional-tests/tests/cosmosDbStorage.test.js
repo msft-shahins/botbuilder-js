@@ -1,10 +1,10 @@
 const assert = require('assert');
-const { CosmosDbStorage } = require('../');
+const { CosmosDbStorage } = require('../../botbuilder-azure');
 const { DocumentClient, UriFactory } = require('documentdb');
 const { MockMode, usingNock } = require('./mockHelper');
 const nock = require('nock');
 
-const mode = process.env.MOCK_MODE ? process.env.MOCK_MODE : MockMode.lockdown;
+const mode = process.env.MOCK_MODE || MockMode.lockdown;
 
 // Endpoint and Authkey for the CosmosDB Emulator running locally
 const getSettings = (partitionKey) => ({

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { BlobStorage } = require('../');
+const { BlobStorage } = require('../../botbuilder-azure');
 const azure = require('azure-storage');
 const { MockMode, usingNock } = require('./mockHelper.js')
 const nock = require('nock');
