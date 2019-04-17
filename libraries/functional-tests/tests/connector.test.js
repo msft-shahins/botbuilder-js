@@ -18,7 +18,7 @@ function base64_encode(file) {
   return Buffer.from(bitmap);
 }
 
-const BotConnector = require('../lib');
+const BotConnector = require('../../botframework-connector/lib');
 
 const ConnectorClient = BotConnector.ConnectorClient;
 const OAuthApiClient = BotConnector.OAuthApiClient;
