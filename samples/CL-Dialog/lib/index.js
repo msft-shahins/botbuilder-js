@@ -46,9 +46,8 @@ const dialogs = new botbuilder_dialogs_adaptive_1.AdaptiveDialog();
 bot.rootDialog = dialogs;
 // Handle unknown intents
 dialogs.addRule(new botbuilder_dialogs_adaptive_1.UnknownIntentRule([
-    new botbuilder_dialogs_adaptive_1.IfCondition(`user.greeted != true`, [
-        new botbuilder_dialogs_adaptive_1.SendActivity(`Hi User! Try talking to me!`),
-        new botbuilder_dialogs_adaptive_1.SetProperty(`user.greeted`, `true`)
+    new botbuilder_dialogs_adaptive_1.IfCondition(`conversation.name !== null`, [
+        new botbuilder_dialogs_adaptive_1.SendActivity(`Hi {conversation.name}!`)
     ]).else([
         clDialog,
         new botbuilder_dialogs_adaptive_1.CodeStep(async (context) => {

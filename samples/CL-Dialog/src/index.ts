@@ -54,9 +54,8 @@ bot.rootDialog = dialogs;
 
 // Handle unknown intents
 dialogs.addRule(new UnknownIntentRule([
-    new IfCondition(`user.greeted != true`, [
-        new SendActivity(`Hi User! Try talking to me!`),
-        new SetProperty(`user.greeted`, `true`)
+    new IfCondition(`conversation.name !== null`, [
+        new SendActivity(`Hi {conversation.name}!`)
     ]).else([
         clDialog,
         new CodeStep(async (context) => {
