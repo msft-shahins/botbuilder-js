@@ -6,8 +6,7 @@ import { BotFrameworkAdapter, MemoryStorage, ActivityTypes } from 'botbuilder';
 import { AdaptiveDialog, UnknownIntentRule, SendActivity, IfCondition, SetProperty, EventRule, RuleDialogEventNames, LogStep, CodeStep } from 'botbuilder-dialogs-adaptive';
 import { DialogManager, DialogTurnResult, DialogTurnStatus } from 'botbuilder-dialogs';
 import { ICLOptions } from '@conversationlearner/sdk'
-import { CLDialog, CLDialogConfiguration, CLDialog_Result } from './clDialog'
-import { getEntityDisplayValueMap } from '@conversationlearner/models'
+import { CLDialog, CLDialogConfiguration } from './clDialog'
 
 // Create HTTP server.
 const server = restify.createServer();
@@ -59,7 +58,7 @@ dialogs.addRule(new UnknownIntentRule([
     ]).else([
         clDialog,
         new CodeStep(async (context) => {
-            const entityMap = getEntityDisplayValueMap(context.state.turn.get(CLDialog_Result))
+            const entityMap = context.state.getValue(clDialog.resultProperty)
             for(let [key, value] of entityMap) {
                 context.state.conversation.set(key, value)
                 await context.context.sendActivity(`entityName: ${key} - entityValue: ${value}`)

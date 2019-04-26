@@ -7,7 +7,6 @@ const botbuilder_1 = require("botbuilder");
 const botbuilder_dialogs_adaptive_1 = require("botbuilder-dialogs-adaptive");
 const botbuilder_dialogs_1 = require("botbuilder-dialogs");
 const clDialog_1 = require("./clDialog");
-const models_1 = require("@conversationlearner/models");
 // Create HTTP server.
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, () => {
@@ -51,7 +50,7 @@ dialogs.addRule(new botbuilder_dialogs_adaptive_1.UnknownIntentRule([
     ]).else([
         clDialog,
         new botbuilder_dialogs_adaptive_1.CodeStep(async (context) => {
-            const entityMap = models_1.getEntityDisplayValueMap(context.state.turn.get(clDialog_1.CLDialog_Result));
+            const entityMap = context.state.getValue(clDialog.resultProperty);
             for (let [key, value] of entityMap) {
                 context.state.conversation.set(key, value);
                 await context.context.sendActivity(`entityName: ${key} - entityValue: ${value}`);
