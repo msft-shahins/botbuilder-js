@@ -91,7 +91,7 @@ export class BotDebugger extends BotAdapterSet {
 			bot: context.activity.recipient,
 			isGroup: context.activity.conversation.isGroup,
 			members: [context.activity.recipient],
-			activity: BotDebugger.trace(context.activity.conversation, 'https://www.botframework.com/schemas/debug', 'Debug', 'Debug Connection Request') as Activity,
+			activity: BotDebugger.trace(context.activity.conversation, 'https://www.botframework.com/schemas/debug', 'Debug', 'Debug Connection Request') as any,
 			channelData: null
 		};
 		try {

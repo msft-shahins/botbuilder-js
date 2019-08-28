@@ -16,5 +16,8 @@
     "botbuilder-dialogs-adaptive": "^4.1.6",
     "restify": "^7.7.0", 
     "@conversationlearner/sdk": "0.318.3"
+  }, 
+  "devDependencies": {
+    "@types/express": "4.16.0"
   }
 }
